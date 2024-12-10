@@ -156,7 +156,7 @@
           <Color blue="ff" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="DU L&#x1eca;CH HOA SEN"/>
+        <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t Tour Du L&#x1ecb;ch"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
