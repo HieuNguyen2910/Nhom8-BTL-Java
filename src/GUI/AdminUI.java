@@ -1593,7 +1593,6 @@ public class AdminUI extends javax.swing.JFrame {
             String tenKS = txtTenKS.getText();
             String diaDiem = txtDiaDiem_KS.getText();
 
-            // Kiểm tra nếu bất kỳ trường nào trống
             if (maKS.equals("") || tenKS.equals("") || diaDiem.equals("")) {
                 JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
                 return;
@@ -1733,7 +1732,6 @@ public class AdminUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnThemTourActionPerformed
 
-    //Quản lý nhân viên    
     private void btnThemNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemNVActionPerformed
         try {
             NhanVien newNV = new NhanVien();
