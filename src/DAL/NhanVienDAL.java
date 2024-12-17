@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package DAL;
 
 import Entities.NhanVien;
@@ -45,6 +49,31 @@ public class NhanVienDAL {
                 JOptionPane.showMessageDialog(null,"Mã nhân viên đã tồn tại");
                 return false;
             }
+        if(a.getTenNV().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được bỏ trống tên");
+            return false;
+        }
+        if(a.getSoDT().equals("")){
+            JOptionPane.showMessageDialog(null,"KhÔng được bỏ trống SDT");
+            return false;
+        }
+        if(a.getDiaChi().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được bỏ trống địa chỉ");
+            return false;
+        }  
+        if(a.getNgaySinh().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được bỏ trống ngày sinh");
+            return false;
+    }
+        if(a.getGioiTinh().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được đẻ trống mục giới tính");
+            return false;
+        }
+        if(a.getEmail().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được bỏ trống Email");
+            return false;
+        }
+
         int index = list.size();
         for(int i=0;i<list.size();i++){
             if(a.getMaNV().compareTo(list.get(i).getMaNV())>0)
@@ -57,6 +86,35 @@ public class NhanVienDAL {
     
     public static boolean update(ArrayList<NhanVien> list, NhanVien a) throws IOException{
         int index = -1;
+                if(a.getMaNV().equals("")){
+            JOptionPane.showMessageDialog(null,"Mã nhân viên không được để trống");
+            return false;
+        }
+        if(a.getTenNV().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được bỏ trống tên");
+            return false;
+        }
+        if(a.getSoDT().equals("")){
+            JOptionPane.showMessageDialog(null,"KhÔng được bỏ trống SDT");
+            return false;
+        }
+        if(a.getDiaChi().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được bỏ trống địa chỉ");
+            return false;
+        }  
+        if(a.getNgaySinh().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được bỏ trống ngày sinh");
+            return false;
+    }
+        if(a.getGioiTinh().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được đẻ trống mục giới tính");
+            return false;
+        }
+        if(a.getEmail().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được bỏ trống Email");
+            return false;
+        }
+
         for(int i=0;i<list.size();i++)
             if(a.getMaNV().equals(list.get(i).getMaNV())){
                 index = i;

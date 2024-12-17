@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package DAL;
 
 import Entities.Tour;
@@ -47,6 +51,14 @@ public class TourDAL {
             }
         
         int index = list.size();
+        String[] thuoctinh={a.getDiaDiem(),a.getMaKS(),a.getThoiGian(),a.getTenTour()};
+        for(int i=0; i<thuoctinh.length;i++){
+            if(thuoctinh[i].equals("")){
+                JOptionPane.showMessageDialog(null,"Không được bỏ trống! Yêu cầu nhập lại!");
+                return false;
+            }
+        
+        }
         for(int i=0;i<list.size();i++){
             if(a.getMaTour().compareTo(list.get(i).getMaTour())>0)
                 index = i+1;
@@ -58,6 +70,18 @@ public class TourDAL {
     
     public static boolean update(ArrayList<Tour> list, Tour a) throws IOException{
         int index = -1;
+                if(a.getMaTour().equals("")){
+            JOptionPane.showMessageDialog(null,"Mã tour không được để trống");
+            return false;
+        }
+        String[] thuoctinh={a.getDiaDiem(),a.getMaKS(),a.getThoiGian(),a.getTenTour()};
+        for(int i=0; i<thuoctinh.length;i++){
+            if(thuoctinh[i].equals("")){
+                JOptionPane.showMessageDialog(null,"Không được bỏ trống! Yêu cầu nhập lại!");
+                return false;
+            }
+        
+        }
         for(int i=0;i<list.size();i++)
             if(a.getMaTour().equals(list.get(i).getMaTour())){
                 index = i;

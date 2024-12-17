@@ -143,24 +143,36 @@ public class ThongTinUserUI extends javax.swing.JFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
+    
             TaiKhoan setTK = new TaiKhoan();
-            setTK.setMaTaiKhoan(txtTenDangNhap.getText());
+            setTK.setMaTaiKhoan(txtTenDangNhap.getText().trim());
+    
             char[] pf = txtPassword.getPassword();
-            String value = new String(pf);
+            String value = new String(pf).trim();
+    
+    
+            if (value.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Cần điền mật khẩu!", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                return;
+                }
+
             setTK.setMatKhau(value);
             setTK.setVaiTro("User");
+
+   
             int reply = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn sửa?", "Thông báo", JOptionPane.YES_NO_OPTION);
-            
+
+       
             if (reply == JOptionPane.YES_OPTION) {
-                if(TaiKhoanDAL.update(TaiKhoanDAL.show(),setTK)){
-                    JOptionPane.showMessageDialog(null,"Sửa tai khoản thành công!");
+                if (TaiKhoanDAL.update(TaiKhoanDAL.show(), setTK)) {
+                    JOptionPane.showMessageDialog(null, "Sửa tài khoản thành công!");
                     show_TaiKhoan();
                 }
             }
-        }
-        catch(HeadlessException | IOException e){
-            JOptionPane.showMessageDialog(null,"Có lỗi xảy ra: "+e.getMessage());
+        }       
+        catch (HeadlessException | IOException e) {
+            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra: " + e.getMessage());
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 

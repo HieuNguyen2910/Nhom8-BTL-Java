@@ -58,19 +58,27 @@ public class TaiKhoanDAL {
             return null;
         }
     }
-    public static boolean insert(ArrayList<TaiKhoan> list, TaiKhoan a) throws IOException{
-        for(TaiKhoan item : list)
-            if(a.getMaTaiKhoan().equals(item.getMaTaiKhoan())){
-                return false;
-            }
-        int index = list.size();
-        for(int i=0;i<list.size();i++){
-            if(a.getMaTaiKhoan().compareTo(list.get(i).getMaTaiKhoan())>0)
-                index = i+1;
+    public static boolean insert(ArrayList<TaiKhoan> list, TaiKhoan a) throws IOException {
+    if (a == null || a.getMaTaiKhoan() == null || a.getMaTaiKhoan().trim().isEmpty()) {
+        return false;
+    }
+
+    for (TaiKhoan item : list) {
+        if (a.getMaTaiKhoan().equals(item.getMaTaiKhoan())) {
+            return false;
         }
-        list.add(index,a);
-        GhiFile.ghi_TaiKhoan_Vao_File(list);
-        return true;
+    }
+
+    int index = list.size();
+    for (int i = 0; i < list.size(); i++) {
+        if (a.getMaTaiKhoan().compareTo(list.get(i).getMaTaiKhoan()) > 0) {
+            index = i + 1;
+        }
+    }
+
+    list.add(index, a);
+    GhiFile.ghi_TaiKhoan_Vao_File(list);
+    return true;
     }
     
     public static boolean update(ArrayList<TaiKhoan> list, TaiKhoan a) throws IOException{

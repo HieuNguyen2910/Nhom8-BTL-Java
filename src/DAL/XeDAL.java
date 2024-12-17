@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package DAL;
 
 import Entities.Xe;
@@ -45,6 +49,14 @@ public class XeDAL {
                 JOptionPane.showMessageDialog(null,"Mã xe đã tồn tại");
                 return false;
             }
+        if(a.getBienSo().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được để trống biển số!");
+            return false;
+        }
+        if(a.getLoaiXe().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được để trống loại xe!");
+            return false;
+        }
         int index = list.size();
         for(int i=0;i<list.size();i++){
             if(a.getMaXe().compareTo(list.get(i).getMaXe())>0)
@@ -57,6 +69,18 @@ public class XeDAL {
     
     public static boolean update(ArrayList<Xe> list, Xe a) throws IOException{
         int index = -1;
+                if(a.getMaXe().equals("")){
+            JOptionPane.showMessageDialog(null,"Mã xe không được để trống");
+            return false;
+        }
+        if(a.getBienSo().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được để trống biển số!");
+            return false;
+        }
+        if(a.getLoaiXe().equals("")){
+            JOptionPane.showMessageDialog(null,"Không được để trống loại xe!");
+            return false;
+        }
         for(int i=0;i<list.size();i++)
             if(a.getMaXe().equals(list.get(i).getMaXe())){
                 index = i;

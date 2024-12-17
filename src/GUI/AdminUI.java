@@ -1562,7 +1562,7 @@ public class AdminUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             if (tbKhachSan.getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(rootPane, "Hãy chọn một dòng để xóa");
+                JOptionPane.showMessageDialog(rootPane, "Hãy chọn một khách sạn để xóa");
             } else if (KhachSanDAL.show().size() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Không có thông tin để xóa");
             } else {
@@ -1586,11 +1586,22 @@ public class AdminUI extends javax.swing.JFrame {
 
     private void btnThemKSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKSActionPerformed
         // TODO add your handling code here:
+           
         try {
             KhachSan newKS = new KhachSan();
-            newKS.setMaKS(txtMaKS.getText());
-            newKS.setTenKS(txtTenKS.getText());
-            newKS.setDiaDiem(txtDiaDiem_KS.getText());
+            String maKS = txtMaKS.getText();
+            String tenKS = txtTenKS.getText();
+            String diaDiem = txtDiaDiem_KS.getText();
+
+            // Kiểm tra nếu bất kỳ trường nào trống
+            if (maKS.equals("") || tenKS.equals("") || diaDiem.equals("")) {
+                JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            newKS.setMaKS(maKS);
+            newKS.setTenKS(tenKS);
+            newKS.setDiaDiem(diaDiem);
 
             if (KhachSanDAL.insert(KhachSanDAL.show(), newKS)) {
                 JOptionPane.showMessageDialog(null, "Thêm khách sạn thành công!");
@@ -1598,9 +1609,11 @@ public class AdminUI extends javax.swing.JFrame {
             }
             delJtextFieldTbKhachSan();
 
-        } catch (HeadlessException | IOException e) {
+        } 
+        catch (HeadlessException | IOException e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra: " + e.getMessage());
         }
+
     }//GEN-LAST:event_btnThemKSActionPerformed
 
     private void txtSuaXeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSuaXeActionPerformed
@@ -1805,12 +1818,25 @@ public class AdminUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Ve setVe = new Ve();
-            setVe.setMaVe(txtMaVe.getText());
-            setVe.setTenUser(cbUser.getSelectedItem().toString());
-            setVe.setMaTour(cbMaTour.getSelectedItem().toString());
-            setVe.setMaNV(cbMaNV.getSelectedItem().toString());
-            setVe.setThoiGian(txtThoiGian_Ve.getText());
-            setVe.setGiaVe(Double.parseDouble(txtGiaVe.getText()));
+            String maVe = txtMaVe.getText();
+            String tenUser = cbUser.getSelectedItem().toString();
+            String maTour = cbMaTour.getSelectedItem().toString();
+            String maNV = cbMaNV.getSelectedItem().toString();
+            String thoiGian = txtThoiGian_Ve.getText();
+            String giaVeStr = txtGiaVe.getText();
+
+            if (maVe.equals("") || tenUser.equals("") || maTour.equals("") || maNV.equals("") || thoiGian.equals("") || giaVeStr.equals("")) {
+                JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            setVe.setMaVe(maVe);
+            setVe.setTenUser(tenUser);
+            setVe.setMaTour(maTour);
+            setVe.setMaNV(maNV);
+            setVe.setThoiGian(thoiGian);
+            setVe.setGiaVe(Double.parseDouble(giaVeStr));
+
             int reply = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn sửa?", "Thông báo", JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 if (VeDAL.update(VeDAL.show(), setVe)) {
@@ -1821,17 +1847,19 @@ public class AdminUI extends javax.swing.JFrame {
                 }
                 delJtextFieldTbTour();
             }
-
-        } catch (HeadlessException | IOException | NumberFormatException e) {
+        } 
+        catch (HeadlessException | IOException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra: " + e.getMessage());
         }
+
+
     }//GEN-LAST:event_btnSuaVeActionPerformed
 
     private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVeActionPerformed
         // TODO add your handling code here:
         try {
             if (tbVe.getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(rootPane, "Hãy chọn một dòng để xóa");
+                JOptionPane.showMessageDialog(rootPane, "Hãy chọn một vé để xóa");
             } else if (VeDAL.show().size() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Không có thông tin để xóa");
             } else {
@@ -1856,12 +1884,24 @@ public class AdminUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Ve newVe = new Ve();
-            newVe.setMaVe(txtMaVe.getText());
-            newVe.setTenUser(cbUser.getSelectedItem().toString());
-            newVe.setMaTour(cbMaTour.getSelectedItem().toString());
-            newVe.setMaNV(cbMaNV.getSelectedItem().toString());
-            newVe.setThoiGian(txtThoiGian_Ve.getText());
-            newVe.setGiaVe(Double.parseDouble(txtGiaVe.getText()));
+            String maVe = txtMaVe.getText();
+            String tenUser = cbUser.getSelectedItem().toString();
+            String maTour = cbMaTour.getSelectedItem().toString();
+            String maNV = cbMaNV.getSelectedItem().toString();
+            String thoiGian = txtThoiGian_Ve.getText();
+            String giaVeStr = txtGiaVe.getText();
+
+            if (maVe.equals("") || tenUser.equals("") || maTour.equals("") || maNV.equals("") || thoiGian.equals("") || giaVeStr.equals("")) {
+                JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            newVe.setMaVe(maVe);
+            newVe.setTenUser(tenUser);
+            newVe.setMaTour(maTour);
+            newVe.setMaNV(maNV);
+            newVe.setThoiGian(thoiGian);
+            newVe.setGiaVe(Double.parseDouble(giaVeStr));
 
             if (VeDAL.insert(VeDAL.show(), newVe)) {
                 JOptionPane.showMessageDialog(null, "Thêm vé thành công!");
@@ -1869,9 +1909,11 @@ public class AdminUI extends javax.swing.JFrame {
             }
 
             delJtextFieldTbTour();
-        } catch (HeadlessException | IOException | NumberFormatException e) {
+        } 
+        catch (HeadlessException | IOException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra: " + e.getMessage());
         }
+
     }//GEN-LAST:event_btnThemVeActionPerformed
 
     private void txtDiaDiem_TourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaDiem_TourActionPerformed
@@ -1934,9 +1976,18 @@ public class AdminUI extends javax.swing.JFrame {
     private void btnSuaKSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaKSActionPerformed
         try {
             KhachSan setKS = new KhachSan();
-            setKS.setMaKS(txtMaKS.getText());
-            setKS.setTenKS(txtTenKS.getText());
-            setKS.setDiaDiem(txtDiaDiem_KS.getText());
+            String maKS = txtMaKS.getText();
+            String tenKS = txtTenKS.getText();
+            String diaDiem = txtDiaDiem_KS.getText();
+
+            if (maKS.equals("") || tenKS.equals("") || diaDiem.equals("")) {
+                JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            setKS.setMaKS(maKS);
+            setKS.setTenKS(tenKS);
+            setKS.setDiaDiem(diaDiem);
 
             int reply = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn sửa?", "Thông báo", JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
@@ -1949,9 +2000,11 @@ public class AdminUI extends javax.swing.JFrame {
                 delJtextFieldTbXe();
             }
 
-        } catch (HeadlessException | IOException e) {
+        } 
+        catch (HeadlessException | IOException e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra: " + e.getMessage());
         }
+
     }//GEN-LAST:event_btnSuaKSActionPerformed
 
     private void tbTaiKhoan2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTaiKhoan2MouseClicked
@@ -1967,7 +2020,7 @@ public class AdminUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             if (tbTaiKhoan2.getSelectedRow() == -1) {
-                JOptionPane.showMessageDialog(rootPane, "Hãy chọn một dòng để xóa");
+                JOptionPane.showMessageDialog(rootPane, "Hãy chọn một tài khoản để xóa");
             } else if (TaiKhoanDAL.showUser().size() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Không có thông tin để xóa");
             } else {
@@ -1989,21 +2042,29 @@ public class AdminUI extends javax.swing.JFrame {
     }//GEN-LAST:event_delTkUserActionPerformed
 
     private void btnThemtkUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemtkUserActionPerformed
-        // TODO add your handling code here:
         try {
             TaiKhoan newTK = new TaiKhoan();
-            newTK.setMaTaiKhoan(usernameKH.getText());
+            String username = usernameKH.getText();
             char[] pf = passwordKH.getPassword();
-            String value = new String(pf);
-            newTK.setMatKhau(value);
+            String password = new String(pf);
+
+            if (username.equals("") || password.equals("")) {
+                JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            newTK.setMaTaiKhoan(username);
+            newTK.setMatKhau(password);
             newTK.setVaiTro("User");
+
             if (TaiKhoanDAL.insert(TaiKhoanDAL.show(), newTK)) {
-                JOptionPane.showMessageDialog(null, "Thêm tai khoản user thành công!");
+                JOptionPane.showMessageDialog(null, "Thêm tài khoản user thành công!");
                 show_TaiKhoanUser();
             }
             delJtextFieldTbTKUser();
 
-        } catch (HeadlessException | IOException e) {
+        } 
+        catch (HeadlessException | IOException e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra: " + e.getMessage());
         }
     }//GEN-LAST:event_btnThemtkUserActionPerformed

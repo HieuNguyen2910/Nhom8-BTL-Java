@@ -260,19 +260,27 @@ public class DatTourUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
-        try{
-            JOptionPane.showMessageDialog(rootPane, "Đặt thành công");
+        try {
+            String tenDK = txtTenDK.getText().trim();
+            if (tenDK.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Cần nhập đủ thông tin đăng ký.");
+                return;
+            }
+
             this.dispose();
             TourDaDat a = new TourDaDat();
             a.setMaTaiKhoan(DangNhapUI.username);
             a.setTourDaChon(newTour);
-            a.setTenDK(txtTenDK.getText());
+            a.setTenDK(tenDK);
+
+            JOptionPane.showMessageDialog(rootPane, "Đặt thành công.");
             TourDaDatDAL.insert(TourDaDatDAL.show(DangNhapUI.username), a);
+
             UserUI dn = new UserUI();
             dn.showWindow();
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Có lỗi xảy ra: "+e.getMessage());
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra: " + e.getMessage());
         }
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
